@@ -47,9 +47,12 @@ def get_logger() -> logging.Logger:
     logger.setLevel(logging.INFO)
     logger.propagate = False
     stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(RedactingFormatter(PII_FIELDS))
+    stream_handler.setFormatter(RedactingFormatter(fields=PII_FIELDS))
     logger.addHandler(stream_handler)
     return logger
+
+
+PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
