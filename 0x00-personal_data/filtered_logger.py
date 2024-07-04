@@ -4,6 +4,8 @@
 import logging
 import re
 from typing import List
+import os
+import mysql.connector
 
 
 class RedactingFormatter(logging.Formatter):
@@ -53,11 +55,8 @@ def get_logger() -> logging.Logger:
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
-def get_db() -> 'mysql.connector.connection.MySQLConnection':
+def get_db() -> mysql.connector.connection.MySQLConnection:
     """Connect to the database"""
-    import os
-    import mysql.connector
-
     db_connection = mysql.connector.connect(
         user=os.getenv("PERSONAL_DATA_DB_USERNAME", "root"),
         password=os.getenv("PERSONAL_DATA_DB_PASSWORD", ""),
