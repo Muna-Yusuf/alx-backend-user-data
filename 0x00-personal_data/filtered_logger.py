@@ -58,15 +58,15 @@ PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """Connect to the database"""
     db_connection = mysql.connector.connect(
-        user=os.getenv("PERSONAL_DATA_DB_USERNAME", "root"),
+        user=os.getenv("PERSONAL_DATA_DB_USERNAME", "localhost"),
         password=os.getenv("PERSONAL_DATA_DB_PASSWORD", ""),
-        host=os.getenv("PERSONAL_DATA_DB_HOST", "localhost"),
+        host=os.getenv("PERSONAL_DATA_DB_HOST", "root"),
         database=os.getenv("PERSONAL_DATA_DB_NAME")
     )
     return db_connection
 
 
-def main() -> None:
+def main():
     """Main function to read and filter database data"""
     db = get_db()
     cursor = db.cursor()
