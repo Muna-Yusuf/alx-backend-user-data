@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
-"""DB MODULE."""
+"""DB module
+"""
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
 
-from user import Base, User
+from user import Base, User  # Import the User model
 
 
 class DB:
-    """DB CLASS."""
+    """DB class
+    """
 
     def __init__(self) -> None:
         """Initialize a new DB instance
@@ -29,7 +31,7 @@ class DB:
         return self.__session
 
     def add_user(self, email: str, hashed_password: str) -> User:
-        """Adds new users to the database."""
+        """Add a new user to the database."""
         new_user = User(email=email, hashed_password=hashed_password)
         self._session.add(new_user)
         self._session.commit()
