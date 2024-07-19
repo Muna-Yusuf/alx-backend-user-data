@@ -1,10 +1,15 @@
+#!/usr/bin/env python3
+""" USER MODEL."""
+
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
 
 Base = declarative_base()
 
+
 class User(Base):
+    """User Model."""
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
@@ -14,9 +19,10 @@ class User(Base):
     reset_token = Column(String(250), nullable=True)
 
     def __repr__(self):
-        return ("<User(id='{}', email='{}', hashed_password='{}', "
-                "session_id='{}', reset_token='{}')>".format(
-                    self.id, self.email, self.hashed_password,
-                    self.session_id, self.reset_token
-                )
+        return (
+            "<User(id='{}', email='{}', hashed_password='{}', "
+            "session_id='{}', reset_token='{}')>".format(
+                self.id, self.email, self.hashed_password,
+                self.session_id, self.reset_token
+            )
         )
